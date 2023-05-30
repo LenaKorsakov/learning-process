@@ -33,3 +33,31 @@ const mergeSort = (arr) => {
 const myArr = [6, 7, 3, 777, 2424, -17, -2, 1, 0];
 mergeSort(myArr);
 
+
+const merge2 = function(nums1, m, nums2, n) {
+  let k = m + n - 1;
+  let i = m - 1;
+  let j = n - 1;
+
+  while (j >=0 && i >=0) {
+      if (nums1[i] >= nums2[j]) {
+          nums1[k] = nums1[i];
+          i--;
+      } else {
+          nums1[k] = nums2[j];
+          j--;
+      }
+      k--;
+  }
+
+  while (j>=0 ) {
+      nums1[k--] = nums2[j--];
+  }
+  while (i >=0) {
+      nums1[k--] = nums1[i--];
+  }
+
+  return;
+};
+
+merge2([1, 2, 3], 3, [2, 5, 6, 7], 4);
