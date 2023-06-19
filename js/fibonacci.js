@@ -10,11 +10,17 @@ const fib = (n) => {
   return prev;
 };
 
-const fibo = function(n) {
-  if (n < 3) {return 1;}
-  let a = 0, b = 1;
-  for (let i = 1; i < n; i++)
-  {[a, b] = [b, a+b];}
+fib(5);
+
+const fibo = function (n) {
+  if (n < 3) {
+    return 1;
+  }
+  let a = 0,
+    b = 1;
+  for (let i = 1; i < n; i++) {
+    [a, b] = [b, a + b];
+  }
   return b;
 };
 
@@ -25,9 +31,8 @@ const fibRec = (n) => {
     return 1;
   }
 
-  return fibRec(n-1) + fibRec(n-2);
+  return fibRec(n - 1) + fibRec(n - 2);
   //такая функция будет очень долго выполняться
 };
 
 fibRec(8);
-
