@@ -40,3 +40,27 @@ const findDifference = function (nums1, nums2) {
 };
 
 findDifference([1, 2], [1, 2, 2, 3]);
+
+const intersectionWithDuplicates = function (nums1, nums2) {
+  const hashMap = {};
+  const result = [];
+
+  for (const num of nums1) {
+    if (num in hashMap) {
+      hashMap[num] += 1;
+    } else {
+      hashMap[num] = 1;
+    }
+  }
+
+  for (const num of nums2) {
+    if (hashMap[num]) {
+      result.push(num);
+      hashMap[num] -= 1;
+    }
+  }
+
+  return result;
+};
+
+intersectionWithDuplicates([1, 2, 2], [1, 2, 2, 3]);

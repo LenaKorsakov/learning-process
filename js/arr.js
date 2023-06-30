@@ -1,7 +1,7 @@
 const reversed = (arr) => {
   const reversedArr = [];
 
-  for (let i = arr.length - 1; i >=0; i --) {
+  for (let i = arr.length - 1; i >= 0; i--) {
     reversedArr.push(arr[i]);
   }
 
@@ -17,32 +17,40 @@ cleaned([0, 1, false, 2, undefined, '', 3, null]);
 const findAnagrams = (array) => {
   const anagram = {};
 
-  for (let i = 0; i < array.length; i++) {
-    const key = array[i].split('').sort().join('');
+  for (const word of array) {
+    const key = word.split('').sort().join('');
 
-    if (anagram[key]) {
-      anagram[key].push(array[i]);
-    } else {
-      anagram[key] = [array[i]];
+    if (!(key in anagram)) {
+      anagram[key] = [];
     }
+    anagram[key].push(word);
   }
   const groups = Object.values(anagram);
 
   const words = [];
 
-  for (let i = 0; i < groups.length; i++) {
-    if (groups[i].length > 1) {
-      words.push(groups[i][groups[i].length - 1]);
+  for (const group of groups) {
+    if (group.length > 1) {
+      words.push(group[group.length - 1]);
     }
   }
 
   return words;
 };
 
-const input = ['dog', 'screen', 'abba', 'mamba', 'abc', 'bamam', 'god', 'aabc', 'odg'];
+const input = [
+  'dog',
+  'screen',
+  'abba',
+  'mamba',
+  'abc',
+  'bamam',
+  'god',
+  'aabc',
+  'odg',
+];
 
 findAnagrams(input);
-
 
 //Counting instances of values in an object
 
@@ -56,7 +64,7 @@ const findFrequency = (ar) => {
       ...allNames,
       [name]: currentCount + 1,
     };
-  },{});
+  }, {});
 
   return namesObj;
 };
@@ -74,7 +82,7 @@ const myArrayWithNoDuplicates = myArray.reduce((accumulator, currentValue) => {
 // eslint-disable-next-line no-console
 console.log(myArrayWithNoDuplicates);
 
-const twoSum = function(nums, target) {
+const twoSum = function (nums, target) {
   const object = {};
 
   for (let i = 0; i < nums.length; i++) {
@@ -91,10 +99,13 @@ const twoSum = function(nums, target) {
 twoSum([1, 3, 5, 6, 7], 11);
 //The in operator in JavaScript is used to determine if a certain property exists in an object or its inherited properties (also known as its prototype chain). If the provided property exists, the in operator returns true.
 
-
-let strStr = function(haystack, needle) {
-  if (needle === '' || needle === haystack) {return 0;}
-  if (haystack.length < needle.length) {return -1;}
+const strStr = function (haystack, needle) {
+  if (needle === '' || needle === haystack) {
+    return 0;
+  }
+  if (haystack.length < needle.length) {
+    return -1;
+  }
 
   for (let i = 0; i < haystack.length - needle.length + 1; i++) {
     if (haystack[i] === needle[0]) {
@@ -110,19 +121,19 @@ let strStr = function(haystack, needle) {
   return -1;
 };
 
-let longestPalindrome = function(s) {
+const longestPalindrome = function (s) {
   const strs = s.toLowerCase();
 
   const obj = {};
   for (const str of strs) {
     if (str in obj) {
-      obj[str] = obj[str] + 1;
+      obj[str]++;
     } else {
       obj[str] = 1;
     }
   }
 
-  const amounts = Object.value(obj);
+  const amounts = Object.values(obj);
 
   return Math.max(...amounts);
 };
